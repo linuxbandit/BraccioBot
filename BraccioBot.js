@@ -23,9 +23,17 @@ function randomInt (low, high) {
 
 tg.on('message', function(msg) {
   if (!msg.text) return;
+  if (msg.text.indexOf("si scopa")>-1){
+    tg.sendMessage({
+      text: "No, si fa l'esamino. Ora chiamo Sandro e Aldo",
+      chat_id: msg.chat.id
+    });
+    return;
+  }
+  if (msg.text!="/opinion") return;
+  var index = randomInt(0,numSentences-1);
   tg.sendMessage({
-    text: sentences[randomInt(0,numSentences)],
-    //reply_to_message_id: msg.message_id,
+    text: sentences[index],
     chat_id: msg.chat.id
   });
 });
